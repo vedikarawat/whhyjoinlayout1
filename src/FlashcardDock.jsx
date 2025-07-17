@@ -8,18 +8,7 @@ import {
   Heart,
 } from "lucide-react";
 
-interface FlashCard {
-  id: number;
-  title: string;
-  content: string;
-  icon: React.ReactNode;
-  gradient: string;
-  isCover?: boolean;
-  imageUrl?: string;
-  imageAlt?: string;
-}
-
-const flashcards: FlashCard[] = [
+const flashcards = [
   {
     id: 0,
     title: "WHY IEEE NSUT?",
@@ -89,23 +78,21 @@ const flashcards: FlashCard[] = [
   },
 ];
 
-const FlashcardDock: React.FC = () => {
+const FlashcardDock = () => {
   const [currentCard, setCurrentCard] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
   const [isAutoAdvancing, setIsAutoAdvancing] = useState(true);
-  const [preloadedImages, setPreloadedImages] = useState<Set<string>>(
-    new Set()
-  );
+  const [preloadedImages, setPreloadedImages] = useState(new Set());
 
   // Preload all images on component mount
   useEffect(() => {
     const imageUrls = flashcards
       .filter((card) => card.imageUrl)
-      .map((card) => card.imageUrl!);
+      .map((card) => card.imageUrl);
 
     const preloadImages = async () => {
       const loadPromises = imageUrls.map((url) => {
-        return new Promise<string>((resolve, reject) => {
+        return new Promise((resolve, reject) => {
           const img = new Image();
           img.onload = () => resolve(url);
           img.onerror = reject;
@@ -148,15 +135,13 @@ const FlashcardDock: React.FC = () => {
     }, 300);
   };
 
-  const getCardStyle = (index: number) => {
+  const getCardStyle = (index) => {
     const offset = index - currentCard;
     const adjustedOffset = offset < 0 ? offset + flashcards.length : offset;
 
-    // Only show current card and next 2 cards
     if (offset < 0 || offset > 2) return { display: "none" };
 
     const zIndex = 100 - offset;
-    // Reduce offset values for mobile
     const isMobile = window.innerWidth < 640;
     const translateY = offset * (isMobile ? 4 : 8);
     const translateX = offset * (isMobile ? 2 : 4);
@@ -176,8 +161,8 @@ const FlashcardDock: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto perspective-1000">
-      <div className="relative h-[22rem] sm:h-[24rem] md:h-[28rem] lg:h-[32rem] xl:h-[36rem]">
+    <div className="relative w-full max-w-7xl mx-auto perspective-1000">
+      <div className="relative h-[22rem] sm:h-[24rem] md:h-[26rem] lg:h-[30rem] xl:h-[34rem]">
         {flashcards.map((card, index) => {
           const offset = index - currentCard;
           if (offset < 0 || offset > 2) return null;
@@ -220,52 +205,43 @@ const FlashcardDock: React.FC = () => {
                   </div>
                 )}
 
-                {/* Enhanced background pattern - reduced for mobile */}
                 <div className="absolute inset-0 opacity-10">
                   <div className="absolute top-2 right-2 sm:top-4 sm:right-4 md:top-6 md:right-6 w-8 h-8 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 border border-white/30 rounded-full animate-pulse"></div>
                   <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 md:bottom-6 md:left-6 w-6 h-6 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-24 lg:h-24 border border-white/30 rounded-full animate-pulse delay-1000"></div>
                   <div className="absolute top-1/2 right-1/4 w-4 h-4 sm:w-8 sm:h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 border border-white/20 rounded-full animate-pulse delay-500"></div>
 
-                  {/* Additional decorative elements */}
                   <div className="absolute top-1/4 left-1/4 w-1 h-1 sm:w-2 sm:h-2 bg-white/30 rounded-full animate-ping"></div>
                   <div className="absolute bottom-1/4 right-1/3 w-1 h-1 bg-white/40 rounded-full animate-ping delay-700"></div>
                 </div>
 
-                {/* Background Pattern - reduced for mobile */}
                 <div className="absolute top-0 right-0 w-8 h-8 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 bg-gradient-to-bl from-white/10 to-transparent rounded-bl-full"></div>
                 <div className="absolute bottom-0 left-0 w-6 h-6 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-24 lg:h-24 bg-gradient-to-tr from-white/10 to-transparent rounded-tr-full"></div>
 
-                {/* Card number indicator for non-cover cards */}
-                {!card.isCover && (
-                  <div className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 lg:top-6 lg:right-6 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-white/20 rounded-full flex items-center justify-center text-xs sm:text-sm md:text-base lg:text-lg font-bold backdrop-blur-sm border border-white/30 shadow-lg">
-                    {index}
-                  </div>
-                )}
-
-                {/* IEEE logo for cover card */}
                 {card.isCover && (
                   <div className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 lg:top-6 lg:right-6 text-white/40 text-xs sm:text-sm font-mono tracking-wider bg-white/10 px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-lg backdrop-blur-sm border border-white/20">
                     EST. 1884
                   </div>
                 )}
 
-                {/* Card Content Layout */}
                 <div className="relative z-10 h-full flex flex-col p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12 pt-8 sm:pt-3 md:pt-6 lg:pt-8 xl:pt-12">
-                  {/* Card Header */}
-                  <div className="flex items-center justify-between mb-5 sm:mb-4 md:mb-6 lg:mb-8">
+                  <div className="flex items-center justify-between mb-5 sm:mb-4 md:mb-6 lg:mb-8 relative">
                     <div className="flex items-center space-x-3 sm:space-x-4 md:space-x-6">
                       <div className="text-white/90 drop-shadow-lg">
                         {card.icon}
                       </div>
                     </div>
+                    {!card.isCover && (
+                      <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-white/20 rounded-full flex items-center justify-center text-xs sm:text-sm md:text-base lg:text-lg font-bold backdrop-blur-sm border border-white/30 shadow-lg">
+                        {index}
+                      </div>
+                    )}
                   </div>
 
-                  {/* Card Title */}
                   <h2
                     className={`${
                       card.isCover
-                        ? "text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-2 sm:mt-0"
-                        : "text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl mt-2 sm:mt-0"
+                        ? "text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl mt-2 sm:mt-0 text-center"
+                        : "text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-2 sm:mt-0 text-center"
                     } font-bold mb-3 sm:mb-3 md:mb-4 lg:mb-6 xl:mb-8 leading-tight`}
                   >
                     {card.title}
@@ -276,15 +252,14 @@ const FlashcardDock: React.FC = () => {
                     <p
                       className={`${
                         card.isCover
-                          ? "text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl"
-                          : "text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl"
+                          ? "text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl"
+                          : "text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl"
                       } leading-relaxed opacity-95 font-medium`}
                     >
                       {card.content}
                     </p>
                   </div>
 
-                  {/* Progress Indicator */}
                   {!card.isCover && (
                     <div className="mt-2 sm:mt-3 md:mt-4 lg:mt-6 flex justify-center">
                       <div className="flex space-x-1 sm:space-x-2">
