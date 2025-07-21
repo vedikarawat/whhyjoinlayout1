@@ -162,7 +162,7 @@ const FlashcardDock = () => {
 
   return (
     <div className="relative w-full max-w-7xl mx-auto perspective-1000">
-      <div className="relative h-[22rem] sm:h-[24rem] md:h-[26rem] lg:h-[30rem] xl:h-[34rem]">
+      <div className="relative h-[22rem] sm:h-[24rem] md:h-[24rem] lg:h-[28rem] xl:h-[32rem]">
         {flashcards.map((card, index) => {
           const offset = index - currentCard;
           if (offset < 0 || offset > 2) return null;
