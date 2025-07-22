@@ -7,6 +7,13 @@ import {
   Lightbulb,
   Heart,
 } from "lucide-react";
+import cover from "./image/cover.png";
+import dock1 from "./image/dock1.png";
+import dock2 from "./image/dock2.png";
+import dock3 from "./image/dock3.png";
+import dock4 from "./image/dock4.png";
+import dock5 from "./image/dock5.png";
+
 
 const flashcards = [
   {
@@ -18,7 +25,7 @@ const flashcards = [
     gradient: "from-[#1e3a8a] via-[#3b82f6] to-[#93c5fd]",
     isCover: true,
     imageUrl:
-      "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800",
+      cover,
     imageAlt: "Technology and innovation",
   },
   {
@@ -29,7 +36,7 @@ const flashcards = [
     icon: <Computer className="w-8 h-8 sm:w-10 md:w-12 lg:w-12" />,
     gradient: "from-[#2563eb] via-[#60a5fa] to-[#bfdbfe]",
     imageUrl:
-      "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800",
+      dock1,
     imageAlt: "Programming and coding",
   },
   {
@@ -39,8 +46,7 @@ const flashcards = [
       "Lead events, organize conferences, and compete in national contests. Your resume will shine with real-world achievements and leadership experience. From organizing tech symposiums to leading project teams, you'll develop the leadership skills and portfolio that make you irresistible to top employers and graduate programs.",
     icon: <Trophy className="w-8 h-8 sm:w-10 md:w-12 lg:w-12" />,
     gradient: "from-[#1d4ed8] via-[#93c5fd] to-[#dbeafe]",
-    imageUrl:
-      "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
+    imageUrl: dock2,
     imageAlt: "Professional achievement and success",
   },
   {
@@ -51,7 +57,7 @@ const flashcards = [
     icon: <Network className="w-8 h-8 sm:w-10 md:w-12 lg:w-12" />,
     gradient: "from-[#1e40af] via-[#3b82f6] to-[#93c5fd]",
     imageUrl:
-      "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800",
+dock3,
     imageAlt: "Global networking and connections",
   },
   {
@@ -62,7 +68,7 @@ const flashcards = [
     icon: <Lightbulb className="w-8 h-8 sm:w-10 md:w-12 lg:w-12" />,
     gradient: "from-[#172554] via-[#1e40af] to-[#60a5fa]",
     imageUrl:
-      "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800",
+dock4,
     imageAlt: "Innovation and research",
   },
   {
@@ -73,7 +79,7 @@ const flashcards = [
     icon: <Heart className="w-8 h-8 sm:w-10 md:w-12 lg:w-12" />,
     gradient: "from-[#1e3a8a] via-[#2563eb] to-[#bfdbfe]",
     imageUrl:
-      "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800",
+dock5,
     imageAlt: "Community and friendship",
   },
 ];
@@ -240,8 +246,8 @@ const FlashcardDock = () => {
                   <h2
                     className={`${
                       card.isCover
-                        ? "text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl mt-2 sm:mt-0 text-center"
-                        : "text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-2 sm:mt-0 text-center"
+                        ? "text-lg sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl mt-2 sm:mt-0 text-center"
+                        : "text-base sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl mt-2 sm:mt-0 text-center"
                     } font-bold mb-3 sm:mb-3 md:mb-4 lg:mb-6 xl:mb-8 leading-tight`}
                   >
                     {card.title}
@@ -252,8 +258,8 @@ const FlashcardDock = () => {
                     <p
                       className={`${
                         card.isCover
-                          ? "text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl"
-                          : "text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl"
+                          ? "text-base sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl"
+                          : "text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl"
                       } leading-relaxed opacity-95 font-medium`}
                     >
                       {card.content}
