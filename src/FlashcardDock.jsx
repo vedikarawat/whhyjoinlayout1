@@ -195,7 +195,7 @@ const FlashcardDock = () => {
               >
                 {/* Background Image */}
                 {card.imageUrl && (
-                  <div className="absolute inset-0 opacity-15">
+                  <div className={`absolute inset-0 ${card.id === 2 ? 'opacity-5' : 'opacity-15'}`}>
                     <img
                       src={card.imageUrl}
                       alt={card.imageAlt}
@@ -260,7 +260,7 @@ const FlashcardDock = () => {
                         card.isCover
                           ? "text-base sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl"
                           : "text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl"
-                      } leading-relaxed opacity-95 font-medium`}
+                      } leading-relaxed opacity-100 font-medium`}
                     >
                       {card.content}
                     </p>
