@@ -15,7 +15,7 @@ import dock4 from "./image/dock4.png";
 import dock5 from "./image/dock5.png";
 
 
-const Cards = [
+const flashcards = [
   {
     id: 0,
     title: "WHY IEEE NSUT?",
@@ -44,7 +44,7 @@ const Cards = [
       "Lead events, organize conferences, and compete in national contests. Your resume will shine with real-world achievements and leadership experience. From organizing tech symposiums to leading project teams, you'll develop the leadership skills and portfolio that make you irresistible to top employers and graduate programs.",
     icon: <Trophy className="w-8 h-8 sm:w-10 md:w-12 lg:w-12" />,
     backgroundColor: "#0080FF",
-    imageUrl: dock2,
+    imageUrl:dock2,
     imageAlt: "Professional achievement and success",
   },
   {
@@ -64,7 +64,7 @@ const Cards = [
       "Dive into IEEE's digital library and stay updated on the latest tech trends, research, and innovations before anyone else. Get early access to cutting-edge research papers, emerging technologies, and industry insights that keep you at the forefront of technological advancement and innovation.",
     icon: <Lightbulb className="w-8 h-8 sm:w-10 md:w-12 lg:w-12" />,
     backgroundColor: "#1E5A96",
-    imageUrl:dock4,
+    imageUrl: dock4,
     imageAlt: "Innovation and research",
   },
   {
@@ -144,9 +144,9 @@ const FlashcardDock = () => {
 
     const zIndex = 100 - offset;
     const isMobile = window.innerWidth < 640;
-    const translateY = offset * (isMobile ? 4 : 8);
-    const translateX = offset * (isMobile ? 2 : 4);
-    const scale = 1 - offset * (isMobile ? 0.015 : 0.02);
+    const translateY = offset * (isMobile ? 6 : 8);
+    const translateX = offset * (isMobile ? 3 : 4);
+    const scale = 1 - offset * (isMobile ? 0.02 : 0.02);
     const opacity = offset === 0 ? 1 : 0.8 - offset * 0.25;
     const rotateX = offset * (isMobile ? 0.5 : 1);
 
@@ -163,7 +163,7 @@ const FlashcardDock = () => {
 
   return (
     <div className="relative w-full max-w-7xl mx-auto perspective-1000">
-      <div className="relative h-[22rem] sm:h-[24rem] md:h-[24rem] lg:h-[28rem] xl:h-[32rem]">
+      <div className="relative h-[28rem] sm:h-[22rem] md:h-[24rem] lg:h-[26rem] xl:h-[28rem]">
         {flashcards.map((card, index) => {
           const offset = index - currentCard;
           if (offset < 0 || offset > 2) return null;
@@ -208,12 +208,88 @@ const FlashcardDock = () => {
                   </div>
                 )}
 
-                {/* Main Content Layout */}
-                <div className="relative z-10 h-full flex p-3 sm:p-4 md:p-6 lg:p-8">
-                  {/* Left Section - Image */}
-                  <div className="w-2/5 sm:w-2/5 md:w-2/5 lg:w-2/5 flex items-center justify-center">
+                {/* Mobile Layout - Stacked */}
+                <div className="relative z-10 h-full flex flex-col sm:hidden p-4">
+                  {/* Mobile Top Section - Icon and Card Number */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="text-white/90 drop-shadow-lg">
+                      {card.icon}
+                    </div>
+                    {!card.isCover && (
+                      <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-sm font-bold backdrop-blur-sm border border-white/30 shadow-lg">
+                        {index}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Mobile Image Section */}
+                  <div className="w-full h-32 mb-4 flex items-center justify-center">
                     {card.imageUrl && (
-                      <div className="w-full h-full flex items-center justify-center p-2 sm:p-3 md:p-4">
+                      <div className="w-full h-full flex items-center justify-center">
+                        <img
+                          src={card.imageUrl}
+                          alt={card.imageAlt}
+                          className={`w-full h-full object-cover rounded-lg shadow-lg transition-opacity duration-300 ${
+                            preloadedImages.has(card.imageUrl)
+                              ? "opacity-100"
+                              : "opacity-0"
+                          }`}
+                          loading="eager"
+                          decoding="async"
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Mobile Content Section */}
+                  <div className="flex-1 flex flex-col">
+                    <h2
+                      className={`${
+                        card.isCover
+                          ? "text-xl font-bold mb-3 text-center"
+                          : "text-lg font-bold mb-3 text-center"
+                      } leading-tight`}
+                    >
+                      {card.title}
+                    </h2>
+
+                    <div className="flex-1 flex items-center">
+                      <p
+                        className={`${
+                          card.isCover
+                            ? "text-sm"
+                            : "text-xs"
+                        } leading-relaxed opacity-90 font-medium text-center`}
+                      >
+                        {card.content}
+                      </p>
+                    </div>
+
+                    {!card.isCover && (
+                      <div className="mt-3 flex justify-center">
+                        <div className="flex space-x-1">
+                          {flashcards.slice(1).map((_, idx) => (
+                            <div
+                              key={idx}
+                              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                idx + 1 === index
+                                  ? "bg-white shadow-lg scale-125"
+                                  : "bg-white/30"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Desktop Layout - Side by Side */}
+                <div className="relative z-10 h-full hidden sm:flex p-4 md:p-6 lg:p-8">
+                  {/* Left Section - Image */}
+                  <div className="w-1/2 flex items-center justify-center">
+                    {card.imageUrl && (
+                      <div className="w-full h-full flex items-center justify-center p-3 md:p-4">
                         <img
                           src={card.imageUrl}
                           alt={card.imageAlt}
@@ -230,14 +306,14 @@ const FlashcardDock = () => {
                   </div>
 
                   {/* Right Section - Content */}
-                  <div className="w-3/5 sm:w-3/5 md:w-3/5 lg:w-3/5 flex flex-col justify-between p-2 sm:p-3 md:p-4 lg:p-6">
+                  <div className="w-1/2 flex flex-col justify-between p-3 md:p-4 lg:p-6">
                     {/* Top Section - Icon and Card Number */}
-                    <div className="flex items-center justify-between mb-3 sm:mb-4 md:mb-6">
+                    <div className="flex items-center justify-between mb-4 md:mb-6">
                       <div className="text-white/90 drop-shadow-lg">
                         {card.icon}
                       </div>
                       {!card.isCover && (
-                        <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-white/20 rounded-full flex items-center justify-center text-xs sm:text-sm md:text-base lg:text-lg font-bold backdrop-blur-sm border border-white/30 shadow-lg">
+                        <div className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-white/20 rounded-full flex items-center justify-center text-sm md:text-base lg:text-lg font-bold backdrop-blur-sm border border-white/30 shadow-lg">
                           {index}
                         </div>
                       )}
@@ -248,9 +324,9 @@ const FlashcardDock = () => {
                       <h2
                         className={`${
                           card.isCover
-                            ? "text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl"
-                            : "text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl"
-                        } font-bold mb-2 sm:mb-3 md:mb-4 leading-tight`}
+                            ? "text-lg md:text-xl lg:text-2xl xl:text-2xl"
+                            : "text-base md:text-lg lg:text-xl xl:text-xl"
+                        } font-bold mb-3 md:mb-4 leading-tight text-center`}
                       >
                         {card.title}
                       </h2>
@@ -258,22 +334,21 @@ const FlashcardDock = () => {
                       <p
                         className={`${
                           card.isCover
-                            ? "text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl"
-                            : "text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl"
+                            ? "text-base md:text-lg lg:text-lg xl:text-lg"
+                            : "text-sm md:text-base lg:text-base xl:text-base"
                         } leading-relaxed opacity-90 font-medium`}
                       >
                         {card.content}
                       </p>
                     </div>
 
-                    {/* Bottom Section - Progress Dots */}
                     {!card.isCover && (
-                      <div className="mt-3 sm:mt-4 md:mt-6 flex justify-start">
-                        <div className="flex space-x-1 sm:space-x-2">
+                      <div className="mt-4 md:mt-6 flex justify-start">
+                        <div className="flex space-x-2">
                           {flashcards.slice(1).map((_, idx) => (
                             <div
                               key={idx}
-                              className={`w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+                              className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                                 idx + 1 === index
                                   ? "bg-white shadow-lg scale-125"
                                   : "bg-white/30"
@@ -293,4 +368,5 @@ const FlashcardDock = () => {
     </div>
   );
 };
-export default cards;
+
+export default FlashcardDock;
