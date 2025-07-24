@@ -324,8 +324,8 @@ const FlashcardDock = () => {
                       <h2
                         className={`${
                           card.isCover
-                            ? "text-lg md:text-xl lg:text-2xl xl:text-2xl"
-                            : "text-base md:text-lg lg:text-xl xl:text-xl"
+                            ? "text-lg md:text-2xl lg:text-4xl xl:text-4xl"
+                            : "text-base md:text-2xl lg:text-3xl xl:text-3xl"
                         } font-bold mb-3 md:mb-4 leading-tight text-center`}
                       >
                         {card.title}
@@ -334,8 +334,8 @@ const FlashcardDock = () => {
                       <p
                         className={`${
                           card.isCover
-                            ? "text-base md:text-lg lg:text-lg xl:text-lg"
-                            : "text-sm md:text-base lg:text-base xl:text-base"
+                            ? "text-base md:text-xl lg:text-xl xl:text-xl"
+                            : "text-sm md:text-lg lg:text-lg xl:text-lg"
                         } leading-relaxed opacity-90 font-medium`}
                       >
                         {card.content}
