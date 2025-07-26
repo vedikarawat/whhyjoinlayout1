@@ -10,39 +10,39 @@ import cover from "./image/cover.png";
 
 const FEATURE_COLORS = [
   {
-    bg: "bg-blue-100",
+    bg: "bg-blue-50",
     border: "border-blue-300",
-    iconBg: "bg-blue-600",
+    iconBg: "bg-blue-700",
     title: "text-blue-900",
-    desc: "text-blue-700",
+    desc: "text-blue-800",
   },
   {
-    bg: "bg-indigo-100",
+    bg: "bg-blue-100",
+    border: "border-blue-400",
+    iconBg: "bg-blue-800",
+    title: "text-blue-900",
+    desc: "text-blue-800",
+  },
+  {
+    bg: "bg-sky-50",
+    border: "border-sky-300",
+    iconBg: "bg-sky-700",
+    title: "text-sky-900",
+    desc: "text-sky-800",
+  },
+  {
+    bg: "bg-indigo-50",
     border: "border-indigo-300",
-    iconBg: "bg-indigo-600",
+    iconBg: "bg-indigo-700",
     title: "text-indigo-900",
-    desc: "text-indigo-700",
+    desc: "text-indigo-800",
   },
   {
-    bg: "bg-slate-100",
-    border: "border-slate-300",
-    iconBg: "bg-slate-600",
-    title: "text-slate-900",
-    desc: "text-slate-700",
-  },
-  {
-    bg: "bg-cyan-100",
+    bg: "bg-cyan-50",
     border: "border-cyan-300",
-    iconBg: "bg-cyan-600",
+    iconBg: "bg-cyan-700",
     title: "text-cyan-900",
-    desc: "text-cyan-700",
-  },
-  {
-    bg: "bg-slate-100",
-    border: "border-slate-300",
-    iconBg: "bg-blue-900",
-    title: "text-blue-900",
-    desc: "text-indigo-700",
+    desc: "text-cyan-800",
   },
 ];
 
@@ -154,33 +154,31 @@ function Docks() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-[#60a5fa] py-10 px-2 sm:px-4 md:px-8">
+    <div className="min-h-screen bg-black text-blue-400 py-6 px-2 sm:px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-       <div className="text-center mb-24 md:mb-32">
-  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
-    Why IEEE NSUT?
-  </h2>
-  <div className="w-12 sm:w-16 h-1 bg-orange-500 mx-auto" />
-</div>
-
+        {/* Header - Reduced spacing, more lowered on desktop */}
+        <div className="text-center mb-8 sm:mb-12 md:mb-20 lg:mb-24 pt-8 sm:pt-12 md:pt-20 lg:pt-28">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-blue-400">
+            Why IEEE NSUT?
+          </h2>
+          <div className="w-12 sm:w-16 h-1 bg-red-600 mx-auto" />
+        </div>
 
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           {/* Image on top on mobile, right on desktop */}
-          <div className="order-1 lg:order-2 mt-6 mb-2 lg:mt-0 lg:mb-0 relative flex justify-center">
+          <div className="order-1 lg:order-2 mt-0 mb-2 lg:mt-0 lg:mb-0 relative flex justify-center">
             <div className="relative w-full max-w-md md:max-w-lg lg:max-w-none">
-              <div className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 sm:border-4 border-blue-300">
+              <div className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 sm:border-4 border-blue-400">
                 <img
-  ref={imageRef}
-  src={cover}
-  alt="Descriptive text for your local image"
-  className="w-full h-[180px] xs:h-[240px] sm:h-[300px] md:h-[380px] lg:h-[540px] xl:h-[650px] object-cover"
-  loading="lazy"
-/>
-
+                  ref={imageRef}
+                  src={cover}
+                  alt="IEEE NSUT community activities and events"
+                  className="w-full h-[180px] xs:h-[240px] sm:h-[300px] md:h-[380px] lg:h-[540px] xl:h-[650px] object-cover"
+                  loading="lazy"
+                />
               </div>
-              <div className="absolute inset-0 -m-2 sm:-m-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl sm:rounded-3xl -z-10 opacity-25"></div>
+              <div className="absolute inset-0 -m-2 sm:-m-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl sm:rounded-3xl -z-10 opacity-20"></div>
             </div>
           </div>
 
