@@ -157,7 +157,7 @@ function Docks() {
     <div className="min-h-screen bg-black text-blue-400 py-6 px-2 sm:px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header - Reduced spacing, more lowered on desktop */}
-        <div className="text-center mb-8 sm:mb-12 md:mb-20 lg:mb-24 pt-8 sm:pt-12 md:pt-20 lg:pt-28">
+        <div className="text-center mb-8 sm:mb-12 md:mb-20 lg:mb-24 pt-12 sm:pt-16 md:pt-28 lg:pt-36">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-blue-400">
             Why IEEE NSUT?
           </h2>

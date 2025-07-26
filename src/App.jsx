@@ -1,5 +1,5 @@
 import React from "react";
-import Docks from "./final";
+import Docks from "./whyIEEE/final";
 // import Tagline from "./Tagline";
 function App(){
     return (
