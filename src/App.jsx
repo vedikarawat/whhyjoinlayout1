@@ -1,5 +1,6 @@
 import React from "react";
-import Docks from "./whyIEEE/final";
+import Docks from "./whyIEEE/whyIEEE";
+import WhyChooseUs from "./whyIEEE/WhyChoose";
 // import Tagline from "./Tagline";
 function App(){
     return (
@@ -8,7 +9,8 @@ function App(){
 
       <div className="relative w-full flex flex-col items-center -mt-6 -sm:mt-6">
         {/* <Tagline /> */}
-        <Docks />
+        {/* <Docks /> */}
+        <WhyChooseUs />
         
       </div>
     </div>
