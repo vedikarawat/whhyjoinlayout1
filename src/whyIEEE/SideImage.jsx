@@ -7,7 +7,7 @@ const SideImage = () => (
       <div className="absolute top-12 left-12 w-full h-full rounded-3xl border-4 border-blue-900 bg-[#0b0d19] opacity-50 -z-20" />
       <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-blue-600 relative z-10 w-full h-full flex items-center justify-center">
         <img
-          src="https://i.ibb.co/9bHzv5H/ieee-delhi-section-dssywlc.png"
+          src="./cover.png"
           alt="IEEE Delhi Section Event"
           className="object-contain w-full h-full bg-black"
           style={{ background: "transparent" }}
