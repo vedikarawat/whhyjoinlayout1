@@ -7,12 +7,12 @@ import {
   Lightbulb,
   Heart,
 } from "lucide-react";
-import cover from "./image/cover.png";
-import dock1 from "./image/dock1.png";
-import dock2 from "./image/dock2.png";
-import dock3 from "./image/dock3.png";
-import dock4 from "./image/dock4.png";
-import dock5 from "./image/dock5.png";
+import cover from "./whyIEEE/image/cover.png";
+import dock1 from "./whyIEEE/image/dock1.jpg";
+import dock2 from "./whyIEEE/image/dock2.png";
+import dock3 from "./whyIEEE/image/dock3.png";
+import dock4 from "./whyIEEE/image/dock4.png";
+import dock5 from "./whyIEEE/image/dock5.png";
 
 
 const flashcards = [
