@@ -9,8 +9,8 @@ function App(){
 
       <div className="relative w-full flex flex-col items-center -mt-6 -sm:mt-6">
         {/* <Tagline /> */}
-        {/* <Docks /> */}
-        <WhyChooseUs />
+        <Docks />
+        {/* <WhyChooseUs /> */}
         
       </div>
     </div>
